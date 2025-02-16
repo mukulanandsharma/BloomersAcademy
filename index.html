@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #befdff;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: white;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2vw;
+}
+h1 {
+  font-size: 1vw;
+}
+
+/* बटन के लिए कंटेनर */
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* लिंक बटन */
+a:link, a:visited {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 2vw;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* होवर पर एनिमेशन */
+a:hover, a:active {
+  background-color: red;
+  color: white;
+  transform: scale(1.1); /* साइज़ बढ़ेगा */
+}
+
+/* टेक्स्ट इफ़ेक्ट */
+a:hover::after {
+  position: absolute;
+  right: 10px;
+  animation: slideRight 0.3s ease-in-out;
+}
+
+/* मोबाइल व्यू के लिए बटन छिपाना */
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  background: dodgerblue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* ड्रॉपडाउन मेनू */
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+}
+.button
+{
+background-color: green;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* छोटे स्क्रीन के लिए */
+@media screen and (max-width: 600px) {
+  .container {
+    display: none; /* बटन गायब होंगे */
+  }
+
+.menu-icon {
+    display: block; /* ☰ आइकन दिखेगा */
+  }
+}
+
+/* Responsive Image */
+.banner img {
+width: 100%;
+height: auto;
+max-height: 500px; /* Image को बहुत बड़ा होने से बचाने के लिए */
+object-fit: contain; /* Image को crop नहीं होने देगा */
+display: block;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+.banner img {
+max-height: 300px; /* Mobile में height adjust */
+}
+}
+
+.marquee-container {
+height: 150px;
+overflow: hidden;
+position: relative;
+background: #f8f9fa;
+padding: 10px;
+border-radius: 5px;
+}
+
+.marquee-content {
+display: block;
+position: absolute;
+width: 100%;
+animation: scrollUp 5s linear infinite;
+}
+
+@keyframes scrollUp {
+0% { top: 100%; }
+100% { top: -100%; }
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #dfff74;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+background-color: #aaa;
+width: 100%;
+padding: 20px;
+}
+.image-right {
+ width: 100%; /* यह पेरेंट div की width होगी */
+ overflow: hidden; /* अतिरिक्त हिस्सा हटा देगा */
+}
+
+.image-right img {
+width: 100%; /* यह इमेज को container में fit कर देगा */
+height: auto; /* aspect ratio को maintain करेगा */
+display: block;
+}
+/* Add a card effect for articles */
+.card {
+background-color: white;
+padding: 20px;
+margin-top: 20px;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Clear floats after the columns */
+.row::after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* Contact Section */
+.contact-section {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: linear-gradient(45deg, #ff512f, #dd2476);
+color: white;
+padding: 40px;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Google Map */
+.contact-map {
+flex: 1;
+padding-right: 20px;
+}
+
+.contact-map iframe {
+width: 100%;
+height: 250px;
+border-radius: 10px;
+}
+
+/* Contact Details */
+.contact-details {
+flex: 1;
+font-size: 1.2rem;
+}
+
+.contact-details h2 {
+margin-bottom: 10px;
+}
+
+.contact-details p {
+margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+.contact-section {
+flex-direction: column;
+text-align: center;
+padding: 20px;
+}
+
+.contact-map {
+padding-right: 0;
+margin-bottom: 20px;
+}
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.75rem; /* छोटा साइज़ */
+}
+
+  @media (max-width: 600px) {
+      footer {
+          font-size: 1.2rem;
+          padding: 20px;
+      }
+  }
+
+  @media (min-width: 1024px) {
+      footer {
+          font-size: 1.8rem;
+      }
+  }
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+.leftcolumn, .rightcolumn {   
+width: 100%;
+padding: 0;
+}
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+.topnav a {
+float: none;
+width: 100%;
+}
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    transition: background 0.3s ease-in-out;
+}
+
+.whatsapp-btn:hover {
+    background-color: #1ebe5d;
+}
+
+/* Scroll-to-Top Button */
+.scroll-top-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.scroll-top-btn:hover {
+    background-color: #e84118;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .whatsapp-btn, .scroll-top-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+.facilities
+{
+background: linear-gradient(45deg, #30fa18,#12a700);
+color: white;
+padding: 40px;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Best School in Crossing Republic</h1>
+</div>
+<div class="button">
+<!-- मेनू आइकन -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<!-- ड्रॉपडाउन मेनू -->
+<div id="dropdownMenu" class="dropdown">
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#facilities">Facilities</a>
+  <a href="#contact">Contact Us</a>
+</div>
+
+<!-- डेस्कटॉप व्यू में दिखने वाले बटन -->
+<div class="container">
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#facilities">Facilities</a>
+  <a href="#contact">Contact Us</a>
+</div>
+</div>
+<script>
+function toggleMenu() {
+  var menu = document.getElementById("dropdownMenu");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+</script>
+<!-- Responsive Banner -->
+<div class="banner">
+<img src="https://i.imgur.com/A09dpuL.jpg" title="source: imgur.com" />
+
+
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2 id="home">Home</h2>
+      <h4>Welcome to Bloomers Academy Best school in Chipiyana Buzurg</h4>
+<h5>🌟 A Joyful Beginning to Your Child’s Learning Journey 🌟</h5>
+      <div class="fakeimg" style="height:200px;">image</div>
+      <p>At <b>Bloomers Academy</b>, we create a happy, safe, and stimulating environment where young minds flourish. Our play-based learning approach ensures that children develop essential skills while having fun. <br>
+Bloomers Academy is managed by Haze Computer Education Society, which is registered by the UP Government.</p>  
+<p>
+<h3>🌈 Our Key Features</h3>  
+<b>✅ Interactive & Fun Learning</b> – Engaging activities for holistic development.<br>
+<b>✅ Safe & Nurturing Environment </b>– Child-friendly classrooms with modern safety measures.<br>
+<b>✅ Experienced & Caring Teachers</b> – Dedicated educators fostering creativity and confidence.<br>
+<b>✅ Well-Designed Curriculum</b> – A blend of academics, arts, and physical activities.<br>
+<b>✅ Outdoor & Indoor Play Areas </b>– Encouraging social interaction and active play.  <br>
+</p>
+<p>
+<h3>📚 Our Programs</h3>
+<b>🎨 Playgroup (2-3 years) </b>– First step into a world of fun and learning.<br>
+<b>📖 Nursery (3-4 years) </b>– Building curiosity through interactive lessons.<br>
+<b>✏️ Kindergarten (4-6 years)</b> – Preparing young learners for formal education.<br>
+</p>
+    </div>
+    <div class="card">
+      <h2 id="about">About Us - </h2>
+      <h5>Learn More About Bloomers Academy</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+<p>Bloomers Academy is a premier play school dedicated to providing a nurturing and stimulating environment for young learners. Our mission is to lay a strong foundation for children by combining fun-based learning with essential life skills.<br>
+<h4>Why Choose Bloomers Academy?</h4><br>
+<b>🌟 Child-Centric Learning Approach</b> – We focus on interactive and engaging learning experiences.<br>
+<b>📚 Well-Structured Curriculum</b> – Designed to enhance cognitive, social, and emotional development.<br>
+<b>🏫 Safe & Secure Environment </b>– Fully equipped classrooms with modern safety measures.<br>
+<b>🎨 Creative & Activity-Based Learning</b> – Art, music, storytelling, and hands-on activities.<br>
+<b>👩‍🏫 Experienced & Caring Educators</b> – A team of well-trained teachers who nurture young minds.<br>
+<b>🌳 Outdoor & Indoor Play Areas</b> – Promoting physical activity and social interaction.<br>
+<p>
+At Bloomers Academy, we believe that early childhood education plays a crucial role in shaping a child’s future. Our engaging programs, interactive teaching methods, and safe learning space ensure that every child grows with confidence, curiosity, and creativity.</p>
+
+<b>🚀 Join us today and give your child the best start in life!</b>
+
+</p>
+    </div>
+  </div>
+<div class="rightcolumn">
+<div class="card">
+<h4>📢 Stay Updated with Bloomers Academy! 📢</h4>
+<!---h4>📅 Upcoming Events</h4-->
+<div class="marquee-container">
+<div class="marquee-content">
+<p>🎉 Admissions Open for 2025! Apply Now.</p>
+<p>🆓 Free Admission</p>
+<p>👨‍👩‍👧‍👦 Special Discounts for Sibling on Monthly Fee</p>
+<p>✏️ Free Stationary for All Students</p>
+<p>🎨 Art & Craft Exhibition - Stay Tuned!</p>
+</div>
+</div>
+</div>
+    <div class="card">
+      <h3>Images</h3>
+      <div class="fakeimg">
+<div class="image-right">
+<p><img src="C:\Users\anums\OneDrive\Desktop\web\img.jpg" alt="Home" ></p>
+ <p><img src="C:\Users\anums\OneDrive\Desktop\web\img.jpg" alt="Home"></p>
+ <p><img src="C:\Users\anums\OneDrive\Desktop\web\img.jpg" alt="Home"></p>
+ <p><img src="C:\Users\anums\OneDrive\Desktop\web\img.jpg" alt="Home"></p>
+<p><img src="C:\Users\anums\OneDrive\Desktop\web\img.jpg" alt="Home"></p></div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+</div>
+<div class="facilities">
+<h2 id="facilities">🌟 Facilities at Bloomers Academy</h2>
+<p>
+Bloomers Academy provides top-quality facilities to ensure holistic development for children. Our goal is to make education engaging and effective.
+<br>
+<h2>📚 Academic Facilities</h2>
+<b>✅ Digital Classes</b>: Digital learning with smart boards and projectors.<br>
+<b>✅ Well-Equipped Library</b>: A rich collection of educational books and resources.<br>
+<b>✅ Computer Labs</b>: Modern labs for practical learning.<br>
+<b>✅ Experienced Teachers</b>: Highly qualified and experienced educators.<br>
+</p>
+<p><h2>🎭 Co-Curricular Activities</h2>
+<b>✅ Sports & Games:</b> Cricket, football, badminton, yoga, and more.<br>
+<b>✅ Art & Craft:</b> Encouraging creativity through art and craft sessions.<br>
+<b>✅ Music & Dance: </b>Training in singing, dance, and musical instruments.<br>
+<b>✅ Annual Functions & Competitions: </b>Talent shows, debates, drawing contests, and more.<br>
+</p>
+<p><h2>🏫 Campus & Infrastructure</h2>
+<b>✅ Safe & Secure Campus:</b> CCTV surveillance and security guards.<br>
+<b>✅ Hygienic Environment:</b> Clean and healthy surroundings.<br>
+<b>✅ Spacious Classrooms:</b> Well-ventilated and well-lit learning spaces.<br>
+<b>✅ Transport Facility:</b> Safe and comfortable school vans.<br>
+<p>
+<h2>💡 Special Features</h2>
+<b>✅ Free Stationery for Students</b><br>
+<b>✅ Sibling Discounts on Fees</b><br>
+<b>✅ Interactive Learning Modules</b><br>
+<b>✅ Personality Development Programs</b><br>
+<b>✅ Medical Check-ups:</b> Regular health check-ups and first-aid services.<br>
+<b>✅ Counseling Sessions:</b> Mental health and career guidance.<br>
+</p>
+<h2>At Bloomers Academy, we believe in shaping the future of our students by providing them with the best facilities and opportunities! 🚀✨</h2>
+</div>
+<div class="contact-section"  id="contact">
+<!-- Google Map -->
+<div class="contact-map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093014!2d-122.41941618468283!3d37.774929279759096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d4a36b41%3A0xf5393b2dd6a3ad69!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1638745789137!5m2!1sen!2sus" 
+allowfullscreen="" loading="lazy">
+</iframe>
+</div>
+
+<!-- Contact Details -->
+<div class="contact-details">
+<h2>📍 Visit Us Today!</h2>
+<p>Give your child the best start with <strong>Bloomers Academy.</strong><br>
+<b>📌 Address: </b>Bloomers Academy, Gali No. - 7, Near GS Garden, Sai Enclave, Chipiyana Buzurg, India<br>
+<strong>📞 Call Us: </strong> +91 9873547665 / 9149107981<br>
+<strong>📧 Email:</strong> BloomersAcademyChip@gmail.com</p>
+<b>🌟</b> Where Learning Begins with Love & Fun! <b>🌟</b>
+</div>
+</div>
+
+<footer>
+ © 2025 All rights reserved by Bloomers Academy. <br>
+Developed By Haze Institute of Computer Education
+</footer>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919873547665" class="whatsapp-btn" target="_blank">
+    &#x1F4AC;
+</a>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top-btn" onclick="scrollToTop()">
+    &#8679;
+</div>
+
+<!-- JavaScript (Placed before closing body tag) -->
+<script>
+    // Scroll-to-Top Button Functionality
+    const scrollButton = document.querySelector('.scroll-top-btn');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollButton.style.display = 'flex';
+        } else {
+            scrollButton.style.display = 'none';
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
